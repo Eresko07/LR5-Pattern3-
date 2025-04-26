@@ -5,35 +5,37 @@
 #include <vector>
 #include <memory>
 
+using namespace std;
+
 // Базовый класс фрукта
 class Fruit {
 public:
     virtual ~Fruit() {}
     virtual void Eat() = 0;
-    virtual std::string GetType() const = 0;
+    virtual string GetType() const = 0;
 };
 
 // Конкретные фрукты
 class Apple : public Fruit {
 public:
     void Eat() override {
-        std::cout << "Eating apple..." << std::endl;
+        cout << "Eating apple..." << endl;
     }
-    std::string GetType() const override { return "Apple"; }
+    string GetType() const override { return "Apple"; }
 };
 
 class Orange : public Fruit {
 public:
     void Eat() override {
-        std::cout << "Eating orange..." << std::endl;
+        cout << "Eating orange..." < endl;
     }
-    std::string GetType() const override { return "Orange"; }
+    string GetType() const override { return "Orange"; }
 };
 
 // Шаблонный контейнер
 template<typename T>
 class Container {
-    std::vector<T*> items;
+    vector<T*> items;
 public:
     void Add(T* item) { items.push_back(item); }
     size_t Size() const { return items.size(); }
@@ -77,7 +79,7 @@ public:
 class QuickEatStrategy : public EatingStrategy {
 public:
     void Eat(Fruit* fruit) override {
-        std::cout << "Quickly eating " << fruit->GetType() << std::endl;
+        cout << "Quickly eating " << fruit->GetType() << endl;
     }
 };
 
@@ -100,7 +102,7 @@ public:
 protected:
     virtual void Prepare(Fruit* fruit) = 0;
     virtual void CoreProcess(Fruit* fruit) {
-        std::cout << "Processing " << fruit->GetType() << std::endl;
+        cout << "Processing " << fruit->GetType() << endl;
     }
     virtual void Finish(Fruit* fruit) = 0;
 };
@@ -108,10 +110,10 @@ protected:
 class AppleProcessor : public FruitProcessor {
 protected:
     void Prepare(Fruit* fruit) override {
-        std::cout << "Washing apple..." << std::endl;
+        cout << "Washing apple..." << endl;
     }
     void Finish(Fruit* fruit) override {
-        std::cout << "Apple is ready!" << std::endl;
+        cout << "Apple is ready!" << endl;
     }
 };
 
